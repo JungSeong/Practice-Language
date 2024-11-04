@@ -1,37 +1,47 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-#define M 2
-#define U 2
-
-struct Monster
+typedef struct
 {
     char name[10];
     int health;
     int attack;
-};
+} Monster;
 
-struct User
+typedef struct
 {
     char name[10];
     int health;
     int attack;
-};
+} User;
 
 int main()
 {
-    struct Monster monster[M];
-    struct User user[U];
-
-    int monster_death_cnt, user_death_cnt;
+    Monster* monster = NULL;
+    User* user = NULL;
+    int monster_death_cnt = 0, user_death_cnt = 0;
     int monster_idx = 0, user_idx = 0;
+
+    int M, U;
+    printf("몬스터의 수와 유저의 수 입력 : ");
+    scanf("%d %d", &M, &U);
+
+    monster = (Monster*)malloc(sizeof(Monster) * M);
+    user = (User*)malloc(sizeof(User) * U);
+
+    if (monster == NULL || user == NULL)
+    {
+        printf("메모리 할당에 실패하였습니다.\n");
+        return -1;
+    }
 
     for (int i=0; i<M; i++)
     {
         printf("Monster %d의 name, health, attack : ", i);
-        scanf("%s %d %d", monster[i].name, &monster[i].health, &monster[i].attack);
+        scanf("%s %d %d", (monster+i)->name, &(monster+i)->health, &(monster+i)->attack);
     }
 
-    for (int i=0; i<M; i++)
+    for (int i=0; i<U; i++)
     {
         printf("User %d의 name, health, attack : ", i);
         scanf("%s %d %d", user[i].name, &user[i].health, &user[i].attack);
@@ -69,4 +79,7 @@ int main()
     {
         printf("비겼습니다!\n");
     }
+
+    free(monster);
+    free(user);
 }

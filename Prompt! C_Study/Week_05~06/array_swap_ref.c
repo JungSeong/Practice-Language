@@ -5,38 +5,39 @@
 
 void swap(int **arr_a, int **arr_b, int *size_a, int *size_b)
 {
-    int temp, old_size;
+    int temp;
 
     if (*size_a > *size_b)
     {
-        old_size = *size_b;
         *size_b = *size_a;
         int *new_b = (int*)realloc(*arr_b, sizeof(int)* *size_b);
 
-        *arr_b = new_b;
-
-        for (int i=old_size; i<*size_b; i++)
+        if (new_b == NULL)
         {
-            (*arr_b)[i] = 0;
+            printf("메모리 재할당에 실패하였습니다.\n");
+            return;
         }
+
+        *arr_b = new_b;
     }
+
     else
     {
-        old_size = *size_a;
         *size_a = *size_b;
         int *new_a = (int*)realloc(*arr_a, sizeof(int)* *size_a);
 
-        *arr_a = new_a;
-
-        for (int i=old_size; i<*size_a; i++)
+        if (new_a == NULL)
         {
-            (*arr_a)[i] = 0;
+            printf("메모리 재할당에 실패하였습니다.\n");
+            return;
         }
+
+        *arr_a = new_a;
     }
 
     for (int i=0; i<*size_a; i++)
         {
-            temp = (*arr_a)[i];
+            temp = (*arr_a)[i]; // temp = *(*(arr_a)+i);
             (*arr_a)[i] = (*arr_b)[i];
             (*arr_b)[i] = temp;
         }
@@ -64,18 +65,40 @@ int main()
         arr_a = (int*)malloc(sizeof(int) * size_a);
         arr_b = (int*)malloc(sizeof(int) * size_b);
 
+        if (arr_a == NULL || arr_b == NULL)
+        {
+            printf("메모리 할당에 실패하였습니다.\n");
+            return -1;
+        }
+
+        /*
+        arr_a = (int*)malloc(sizeof(int) * size_a);
+        arr_b = (int*)malloc(sizeof(int) * size_b);
+
+        if (arr_a == NULL || arr_b == NULL)
+        {
+            printf("메모리 할당에 실패하였습니다.\n");
+            return;
+        }
+
+        1. 만약 size_a 값으로 0이 입력되었다고 한다면, arr_a는 컴파일러에 따라 NULL을 반환할 수도, 어떤 유효한 주소값을 반환할 수도 있다.
+        2. 메모리가 부족할 경우 malloc 메모리 할당이 실패할 수 있다.
+        */
+
         printf("배열 A를 입력하세요 : ");
         
         for (int i=0; i<size_a; i++)
         {
-            scanf("%d", &arr_a[i]);
+            // scanf("%d", &arr_a[i]);
+            scanf("%d", arr_a+i);
         }
 
         printf("배열 B를 입력하세요 : ");
 
         for (int i=0; i<size_b; i++)
         {
-            scanf("%d", &arr_b[i]);
+            // scanf("%d", &arr_b[i]);
+            scanf("%d", arr_b+i);
         }
 
         break;   
@@ -87,15 +110,20 @@ int main()
 
     for (int i=0; i< size_a; i++)
     {
-        printf("%d ", *(arr_a + i));
+        printf("%d ", arr_a[i]);
+        // printf("%d ", *(arr_a + i));
     }
 
     printf("\n");
 
     for (int i=0; i< size_b; i++)
     {
-        printf("%d ", *(arr_b + i));
+        printf("%d ",arr_b[i]);
+        // printf("%d ", *(arr_b + i));
     }
 
     printf("\n");
+
+    free(arr_a);
+    free(arr_b);
 }
