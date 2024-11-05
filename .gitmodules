@@ -1,0 +1,9 @@
+[submodule "C++ Example Code"]
+	path = C++ Example Code
+	url = https://github.com/mystous/DoItCPP.git
+[submodule "JAVA Example Code"]
+	path = JAVA Example Code
+	url = https://github.com/easyspubjava/JAVA_LAB.git
+[submodule "Pytorch Example Code"]
+	path = Pytorch Example Code
+	url = https://github.com/gilbutITbook/080289.git

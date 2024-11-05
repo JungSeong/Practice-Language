@@ -3,23 +3,23 @@
 using namespace std;
 
 void print() {
-  // ÇÔ¼ö ³»ºÎÀÇ Áö¿ª º¯¼ö
+  // í•¨ìˆ˜ ë‚´ë¶€ì˜ ì§€ê²½ ë³€ìˆ˜
   int value = 10;
 
-  cout << "print ÇÔ¼ö ³»ºÎ¿¡¼­ÀÇ Áö¿ª º¯¼ö value: " << value << endl;
+  cout << "print í•¨ìˆ˜ ë‚´ë¶€ì—ì„œì˜ ì§€ì—­ ë³€ìˆ˜ value: " << value << endl;
 }
 
 int main() {
-  // main ÇÔ¼ö ³»ºÎÀÇ Áö¿ª º¯¼ö
+  // main í•¨ìˆ˜ ë‚´ë¶€ì˜ ì§€ì—­ ë³€ìˆ˜
   int value = 5;
 
-  cout << "main ÇÔ¼ö ³»ºÎ¿¡¼­ÀÇ Áö¿ª º¯¼ö value: " << value << endl;
+  cout << "main í•¨ìˆ˜ ë‚´ë¶€ì—ì„œì˜ ì§€ì—­ ë³€ìˆ˜ value: " << value << endl;
 
-  // print ÇÔ¼ö È£Ãâ
+  // print í•¨ìˆ˜ í˜¸ì¶œ
   print();
 
-  // print ÇÔ¼ö È£Ãâ ÈÄ¿¡µµ main ÇÔ¼öÀÇ value¿¡ ¿µÇâÀ» ÁÖÁö ¾ÊÀ½
-  cout << "´Ù½Ã main ÇÔ¼ö ³»ºÎ¿¡¼­ÀÇ Áö¿ª º¯¼ö value: " << value << endl;
+  // print í•¨ìˆ˜ í˜¸ì¶œ í›„ì—ë„ main í•¨ìˆ˜ì˜ valueì— ì˜í–¥ì„ ì£¼ì§€ ì•ŠìŒ
+  cout << "ë‹¤ì‹œ main í•¨ìˆ˜ ë‚´ë¶€ì—ì„œì˜ ì§€ì—­ ë³€ìˆ˜ value: " << value << endl;
 
   return 0;
 }
