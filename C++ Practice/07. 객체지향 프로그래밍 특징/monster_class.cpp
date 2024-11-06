@@ -11,6 +11,7 @@ class character{
         int power;
 };
 
+// character 클래스를 상속 받음
 class player : public character {
     public :
         player(){};

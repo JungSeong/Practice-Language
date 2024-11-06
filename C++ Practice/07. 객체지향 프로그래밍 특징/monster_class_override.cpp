@@ -70,14 +70,19 @@ int main()
     monster_b tutorial_monster;
     monster_c boss_monster;
 
+    // 오버라이딩 함수의 호출
+    // 오버라이딩 된 함수의 attack_special의 내용이 출력된다.
+
     cout << "오버라이딩 된 함수 호출" << endl;
     forest_monster.attack_special(player1);
     tutorial_monster.attack_special(player1);
     boss_monster.attack_special(player1);
 
     // 오버라이딩 함수는 네임스페이스를 통해 부모 클래스의 정의를 사용할 수 있다.
+    // 부모 클래스의 attack_special의 내용만 출력된다.
+
     cout << "부모 클래스의 함수 호출" << endl;
     forest_monster.monster::attack_special(player1);
-    forest_monster.monster::attack_special(player1);
-    forest_monster.monster::attack_special(player1);
+    tutorial_monster.monster::attack_special(player1);
+    boss_monster.monster::attack_special(player1);
 }

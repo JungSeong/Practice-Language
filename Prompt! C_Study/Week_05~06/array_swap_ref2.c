@@ -20,6 +20,11 @@ void swap(int *arr_a, int *arr_b, int *size_a, int *size_b)
     }
 
     for (int i=0; i<*size_a; i++)
+    {
+        printf("%p\n", arr_a + i);
+    }
+
+    for (int i=0; i<*size_a; i++)
         {
             temp = *(arr_a + i); // temp = *(*(arr_a)+i);
             *(arr_a + i) = *(arr_b + i);
@@ -49,6 +54,11 @@ int main()
         arr_a = (int*)malloc(sizeof(int) * size_a);
         arr_b = (int*)malloc(sizeof(int) * size_b);
 
+        for (int i=0; i<size_a; i++)
+        {
+            printf("%p\n", arr_a + i);
+        }
+
         if (arr_a == NULL || arr_b == NULL)
         {
             printf("메모리 할당에 실패하였습니다.\n");
@@ -56,15 +66,6 @@ int main()
         }
 
         /*
-        arr_a = (int*)malloc(sizeof(int) * size_a);
-        arr_b = (int*)malloc(sizeof(int) * size_b);
-
-        if (arr_a == NULL || arr_b == NULL)
-        {
-            printf("메모리 할당에 실패하였습니다.\n");
-            return;
-        }
-
         1. 만약 size_a 값으로 0이 입력되었다고 한다면, arr_a는 컴파일러에 따라 NULL을 반환할 수도, 어떤 유효한 주소값을 반환할 수도 있다.
         2. 메모리가 부족할 경우 malloc 메모리 할당이 실패할 수 있다.
         */

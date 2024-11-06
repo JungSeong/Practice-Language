@@ -70,6 +70,9 @@ int main()
     monster &mon = forest_monster; // monster 형의 forest_monster 변수의 또 다른 이름 = mon
     monster_a &mon_a = forest_monster; // monster_a 형의 forest_monster 변수의 또 다른 이름 = mon_a
 
+    // 부모 클래스의 레퍼런스로 공격
     mon.attack_special(player1);
+
+    // 자식 클래스의 레퍼런스로 공격
     mon_a.attack_special(player1);
 }

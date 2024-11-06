@@ -35,6 +35,12 @@ int main()
         return -1;
     }
 
+    // for (int i=0; i<M; i++)
+    // {
+    //     printf("name %d : %p, health %d : %p, attack %d : %p \n", i, monster[i].name, i, &monster[i].health, i, &monster[i].attack);
+    //     printf("name %d : %p, health %d : %p, attack %d : %p \n", i, (monster+i)->name, i, &(monster+i)->health, i, &(monster+i)->attack);
+    // }
+
     for (int i=0; i<M; i++)
     {
         printf("Monster %d의 name, health, attack : ", i);
@@ -55,12 +61,18 @@ int main()
         if (monster[monster_idx].health <= 0)
         {
             printf("%s이(가) 쓰러졌습니다!\n", monster[monster_idx].name);
+            // printf("%s이(가) 쓰러졌습니다!\n", (*(monster + monster_idx)).name);
+            // printf("%s이(가) 쓰러졌습니다!\n", (monster + monster_idx)->name);
+
             monster_idx++;
             monster_death_cnt++;
         }
         if (user[user_idx].health <= 0)
         {
             printf("%s이(가) 쓰러졌습니다!\n", user[user_idx].name);
+            // printf("%s이(가) 쓰러졌습니다!\n", (*(user + user_idx)).name);
+            // printf("%s이(가) 쓰러졌습니다!\n", (user + user_idx) -> name);
+
             user_idx++;
             user_death_cnt++;
         }

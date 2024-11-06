@@ -12,9 +12,10 @@ class bank
         void use_counter(int in, int out);
 };
 
+// 생성자
 bank::bank()
 {
-    safe += 1000;
+    safe = 1000;
     cout << "최초 금고 : " << safe << endl;
     cout << endl;
 }
