@@ -65,7 +65,7 @@ int value = 1;
 int main()
 {
     int value = -1;
-
+무제 폴더
     cout << value << endl; // 지역 변수
     cout << ::value << endl; //전역 변수
     
@@ -74,7 +74,7 @@ int main()
 ~~~
 
 ## 문자열 표현 방식
-C++에서는 표준 라이브러리 형태인 string 클래스를 지원한다.
+C++에서는 표준 라이브러리 형태인 string 클래스를 지원한다. char*나 char[]와 달리 문자열 끝에 \0이 포함되지 않아 **문자열의 길이를 동적으로** 변경이 가능하다.
 
 ~~~
 #include <iostream>
@@ -92,6 +92,15 @@ int main() {
   return 0;
 }
 ~~~
+
+std::cin : 공백이 입력될 때까지 값을 입력 받는다.<br>
+std::getline(std::cin, str) : 공백이 입력되더라도 값을 입력 받는다.
+
+### 특정 원소 접근 방법
+str.at(idx) : idx 위치 문자 반환, 범위 유용성 체크 O <br>
+str[idx] : idx 위치 문자 반환, 범위 유용성 체크 X <br>
+str.front() : 문자열의 가장 앞의 문자 반환 <br>
+str.back() : 문자열의 가장 뒤의 문자 반환
 
 사용자 정의 리터럴 : opeartor""의 사용
 
@@ -258,8 +267,30 @@ ptr = &b; // 포인터 변수 자체를 상수화, 컴파일 에러 발생
 
 ~~~
 자료형 &레퍼런스_변수_이름 = 대상_변수_이름;
-
 int &ref_a = a; // ref_a는 a를 참조한다.
+~~~
+
+레퍼런스 변수 ref_a와 a는 서로 같은 주소 값을 가진다 
+
+C++에서 참조자는 주로 **함수에 인수를 전달**할 때 사용된다.
+
+~~~
+int main(void)
+{
+    int num1 = 3, num2 = 7;
+    cout << "변경 전 num1의 값은 " << num1 << "이며, num2의 값은 " << num2 << "입니다." << endl;
+    Swap(num1, num2);
+    cout << "변경 후 num1의 값은 " << num1 << "이며, num2의 값은 " << num2 << "입니다." << endl;
+    return 0;
+}
+
+void Swap(int& x, int& y)
+{
+    int temp;
+    temp = x;
+    x = y;
+    y = temp;
+}
 ~~~
 
 주의사항
@@ -325,3 +356,59 @@ int main() {
 스택 풀기 : 함수에서 발생한 예외 처리의 책임은 throw가 발생한 함수를 호출한 쪽으로 넘어간다.
 
 어설션 : 예상치 못한 상황에서 프로그램 동작을 중단시키는 도구
+
+## 함수 템플릿(template)
+C++에서 함수 탬플릿은 함수의 일반화된 선언을 의미. 같은 알고리즘을 기반으로 하면서, 서로 다른 타입에서 동작하는 함수를 한 번에 정의할 수 있다.
+
+~~~
+template <typename T>
+void Swap(T& a, T& b);
+~~~
+
+**명시적 특수화** : 특정 타입에 대한 특별한 동작을 정의
+
+[EX] double형을 위한 명시적 특수화
+
+~~~
+template <> void Swap<double>(double&, double&) { ... };
+~~~
+
+## 클래스 탬플릿
+클래스의 일반화된 선언
+
+~~~
+#include <iostream>
+using namespace std;
+
+template <typename T>
+class Data
+{
+private:
+	T data_;
+public:
+	Data(T dt);
+	T get_data();
+};
+
+int main(void)
+{
+	Data<string> str_data("C++ 수업");
+	Data<int> int_data(12);
+	
+	cout << "str_data : " << str_data.get_data() << endl;	
+	cout << "int_data : " << int_data.get_data() << endl;
+	return 0;
+}
+
+template <typename T>
+Data<T>::Data(T dt)
+{
+	data_ = dt;
+}
+
+template <typename T>
+T Data<T>::get_data()
+{
+	return data_;
+}
+~~~
