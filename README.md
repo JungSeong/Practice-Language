@@ -1,3 +1,3 @@
 ## Practice_Language
 
-C++, Java 언어 연습
+C++, Java, Python...등등 언어 학습
